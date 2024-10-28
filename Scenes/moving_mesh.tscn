@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bupjgehspkdeo"]
 
-[ext_resource type="Material" uid="uid://dffhf65r1361u" path="res://Color1.tres" id="1_myn8d"]
+[ext_resource type="Material" uid="uid://dffhf65r1361u" path="res://Materials/Color1.tres" id="1_myn8d"]
 [ext_resource type="Script" path="res://Scripts/moving_mesh.gd" id="2_pbsl7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_l83w6"]
