@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://y5ukec25rhbs"]
 
-[ext_resource type="PackedScene" uid="uid://bupjgehspkdeo" path="res://moving_mesh.tscn" id="1_q6wo7"]
+[ext_resource type="PackedScene" uid="uid://bupjgehspkdeo" path="res://Scenes/moving_mesh.tscn" id="1_q6wo7"]
 [ext_resource type="Material" uid="uid://72v7vo4ov7uf" path="res://Color2.tres" id="2_bsbxx"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wimm7"]
