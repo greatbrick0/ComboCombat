@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnbkn2q3tgxxs"]
+
+[ext_resource type="PackedScene" uid="uid://y5ukec25rhbs" path="res://level.tscn" id="1_4sp4s"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kacka"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Node" type="Node"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(320, 180)
+
+[node name="Level" parent="SubViewport" instance=ExtResource("1_4sp4s")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+texture = SubResource("ViewportTexture_kacka")
+
+[node name="FlatElements" type="Node2D" parent="."]
