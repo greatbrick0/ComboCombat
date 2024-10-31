@@ -17,6 +17,7 @@ func _process(delta):
 	global_position += xyz(moveDir * moveSpeed * delta)
 
 func MoveCommand(newTargetPos: Vector2, newMoveSpeed: float, maxDist: float) -> void:
+	newTargetPos = VecUtilities.RoundToGrid(newTargetPos)
 	movePos = xy(global_position) + (newTargetPos - xy(global_position)).limit_length(maxDist)
 	moveSpeed = newMoveSpeed
 

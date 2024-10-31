@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cw4r3ip4tw2ip"]
+[gd_scene load_steps=7 format=3 uid="uid://cw4r3ip4tw2ip"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_677ad"]
 [ext_resource type="Material" uid="uid://dffhf65r1361u" path="res://Materials/Color1.tres" id="1_kwdtd"]
+[ext_resource type="Script" path="res://Scripts/movement.gd" id="3_73kb4"]
+[ext_resource type="Script" path="res://Scripts/ui_tracker.gd" id="4_4mxan"]
+[ext_resource type="PackedScene" uid="uid://cwgxjycmg3u78" path="res://Scenes/health_bar.tscn" id="5_8ny3w"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_l83w6"]
 
@@ -12,3 +15,10 @@ script = ExtResource("1_677ad")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = ExtResource("1_kwdtd")
 mesh = SubResource("CapsuleMesh_l83w6")
+
+[node name="Movement" type="Node3D" parent="."]
+script = ExtResource("3_73kb4")
+
+[node name="UiTracker" type="Node3D" parent="."]
+script = ExtResource("4_4mxan")
+trackerObj = ExtResource("5_8ny3w")
