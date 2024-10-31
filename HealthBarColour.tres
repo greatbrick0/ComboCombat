@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bsadxwqy048vw"]
+
+[ext_resource type="Shader" path="res://HealthBarColour.gdshader" id="1_had51"]
+
+[resource]
+shader = ExtResource("1_had51")
+shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
+shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
+shader_parameter/flashing = 0.0

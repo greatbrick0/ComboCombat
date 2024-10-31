@@ -14,8 +14,8 @@ size = Vector2i(320, 180)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(640, 360)
-scale = Vector2(4, 4)
+position = Vector2(960, 540)
+scale = Vector2(6, 6)
 texture = SubResource("ViewportTexture_kacka")
 
 [node name="FlatElements" type="Node2D" parent="."]

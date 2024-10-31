@@ -18,6 +18,7 @@ mesh = SubResource("CapsuleMesh_l83w6")
 
 [node name="Movement" type="Node3D" parent="."]
 script = ExtResource("3_73kb4")
+maxDistance = 10.0
 
 [node name="UiTracker" type="Node3D" parent="."]
 script = ExtResource("4_4mxan")

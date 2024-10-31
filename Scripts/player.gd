@@ -15,10 +15,12 @@ func _ready():
 func _process(delta):
 	moveDir = xy(global_position).direction_to(movePos)
 	global_position += xyz(moveDir * moveSpeed * delta)
+	if(xy(global_position).distance_squared_to(movePos) <= 0.0001):
+		global_position = xyz(movePos)
 
 func MoveCommand(newTargetPos: Vector2, newMoveSpeed: float, maxDist: float) -> void:
-	newTargetPos = VecUtilities.RoundToGrid(newTargetPos)
 	movePos = xy(global_position) + (newTargetPos - xy(global_position)).limit_length(maxDist)
+	movePos = VecUtilities.RoundToGrid(movePos)
 	moveSpeed = newMoveSpeed
 
 func RecordAction(action) -> void:
