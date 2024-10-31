@@ -1,17 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwgxjycmg3u78"]
+[gd_scene load_steps=9 format=3 uid="uid://cwgxjycmg3u78"]
 
 [ext_resource type="Theme" uid="uid://omi6nhgcn2v8" path="res://CombatUiTheme1.tres" id="1_8f6cw"]
 [ext_resource type="Script" path="res://Scripts/health_bar.gd" id="1_kwrvr"]
-[ext_resource type="Material" uid="uid://bsadxwqy048vw" path="res://HealthBarColour.tres" id="2_g64lr"]
+
+[sub_resource type="Shader" id="Shader_cvbqc"]
+code = "shader_type canvas_item;
+uniform vec4 barColour : source_color;
+uniform vec4 barColourShade : source_color;
+uniform vec4 rimColour : source_color;
+uniform float flashing : hint_range(0.0, 1.0);
+
+void fragment() {
+	vec4 pixelColour = COLOR;
+	float value = (pixelColour.r + pixelColour.g + pixelColour.b) / 3.0;
+	if(value >= 0.9){
+		pixelColour.rgb = mix(barColour, barColourShade, pow(UV.y, 1.8)).rgb;
+		pixelColour.rgb = mix(pixelColour.rgb, vec3(1, UV.x * 1.2, pow(UV.x, 2)) + 0.2, flashing * pow(sin(TIME * 5.0), 2));
+	}
+	else if(value < 0.4){
+		pixelColour.rgb *= pow(sin(UV.y * 2.0 + 0.5), 4);
+	}
+	else{
+		pixelColour.rgb = rimColour.rgb;
+	}
+	COLOR = pixelColour;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wurho"]
+shader = SubResource("Shader_cvbqc")
+shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
+shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
+shader_parameter/flashing = 0.0
+
+[sub_resource type="Shader" id="Shader_s7203"]
+code = "shader_type canvas_item;
+uniform vec4 barColour : source_color;
+uniform vec4 barColourShade : source_color;
+uniform vec4 rimColour : source_color;
+uniform float flashing : hint_range(0.0, 1.0);
+
+void fragment() {
+	vec4 pixelColour = COLOR;
+	float value = (pixelColour.r + pixelColour.g + pixelColour.b) / 3.0;
+	if(value >= 0.9){
+		pixelColour.rgb = mix(barColour, barColourShade, pow(UV.y, 1.8)).rgb;
+		pixelColour.rgb = mix(pixelColour.rgb, vec3(1, UV.x * 1.2, pow(UV.x, 2)) + 0.2, flashing * pow(sin(TIME * 5.0), 2));
+	}
+	else if(value < 0.4){
+		pixelColour.rgb *= pow(sin(UV.y * 2.0 + 0.5), 4);
+	}
+	else{
+		pixelColour.rgb = rimColour.rgb;
+	}
+	COLOR = pixelColour;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssit0"]
+shader = SubResource("Shader_s7203")
+shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
+shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
+shader_parameter/flashing = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4560"]
+shader = SubResource("Shader_s7203")
+shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
+shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
+shader_parameter/flashing = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehpfc"]
+shader = SubResource("Shader_s7203")
+shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
+shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
+shader_parameter/flashing = 0.0
 
 [node name="HealthBar" type="Node2D"]
 script = ExtResource("1_kwrvr")
 segments = 17
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
 show_behind_parent = true
-material = ExtResource("2_g64lr")
+material = SubResource("ShaderMaterial_wurho")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -26,9 +100,8 @@ value = 75.0
 show_percentage = false
 
 [node name="ProgressBar2" type="ProgressBar" parent="."]
-visible = false
 show_behind_parent = true
-material = ExtResource("2_g64lr")
+material = SubResource("ShaderMaterial_ssit0")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -43,9 +116,8 @@ value = 50.0
 show_percentage = false
 
 [node name="ProgressBar3" type="ProgressBar" parent="."]
-visible = false
 show_behind_parent = true
-material = ExtResource("2_g64lr")
+material = SubResource("ShaderMaterial_y4560")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -60,9 +132,8 @@ value = 25.0
 show_percentage = false
 
 [node name="ProgressBar4" type="ProgressBar" parent="."]
-visible = false
 show_behind_parent = true
-material = ExtResource("2_g64lr")
+material = SubResource("ShaderMaterial_ehpfc")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://y5ukec25rhbs"]
+[gd_scene load_steps=9 format=3 uid="uid://y5ukec25rhbs"]
 
 [ext_resource type="PackedScene" uid="uid://cw4r3ip4tw2ip" path="res://Scenes/player.tscn" id="2_2gyv5"]
+[ext_resource type="PackedScene" uid="uid://da7sd2b7akk4q" path="res://Scenes/ui_tracker.tscn" id="2_5vpys"]
 [ext_resource type="Material" uid="uid://72v7vo4ov7uf" path="res://Materials/Color2.tres" id="2_bsbxx"]
 [ext_resource type="Script" path="res://Scripts/controlled_camera.gd" id="2_jwr11"]
+[ext_resource type="PackedScene" uid="uid://cwgxjycmg3u78" path="res://Scenes/health_bar.tscn" id="3_g7k0q"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wimm7"]
 
@@ -16,10 +18,13 @@ ambient_light_source = 2
 
 [node name="Level" type="Node3D"]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="Grass" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 material_override = ExtResource("2_bsbxx")
 mesh = SubResource("PlaneMesh_wimm7")
+
+[node name="UiTracker" parent="Grass" instance=ExtResource("2_5vpys")]
+trackerObj = ExtResource("3_g7k0q")
 
 [node name="ControlledCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 5)
