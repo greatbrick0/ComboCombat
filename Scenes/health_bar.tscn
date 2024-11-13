@@ -6,7 +6,6 @@
 [sub_resource type="Shader" id="Shader_cvbqc"]
 code = "shader_type canvas_item;
 uniform vec4 barColour : source_color;
-uniform vec4 barColourShade : source_color;
 uniform vec4 rimColour : source_color;
 uniform float flashing : hint_range(0.0, 1.0);
 
@@ -14,7 +13,7 @@ void fragment() {
 	vec4 pixelColour = COLOR;
 	float value = (pixelColour.r + pixelColour.g + pixelColour.b) / 3.0;
 	if(value >= 0.9){
-		pixelColour.rgb = mix(barColour, barColourShade, pow(UV.y, 1.8)).rgb;
+		pixelColour.rgb = mix(barColour, barColour, pow(UV.y, 1.8)).rgb;
 		pixelColour.rgb = mix(pixelColour.rgb, vec3(1, UV.x * 1.2, pow(UV.x, 2)) + 0.2, flashing * pow(sin(TIME * 5.0), 2));
 	}
 	else if(value < 0.4){
@@ -30,14 +29,12 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wurho"]
 shader = SubResource("Shader_cvbqc")
 shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
-shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
 shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
 shader_parameter/flashing = 0.0
 
 [sub_resource type="Shader" id="Shader_s7203"]
 code = "shader_type canvas_item;
 uniform vec4 barColour : source_color;
-uniform vec4 barColourShade : source_color;
 uniform vec4 rimColour : source_color;
 uniform float flashing : hint_range(0.0, 1.0);
 
@@ -45,7 +42,7 @@ void fragment() {
 	vec4 pixelColour = COLOR;
 	float value = (pixelColour.r + pixelColour.g + pixelColour.b) / 3.0;
 	if(value >= 0.9){
-		pixelColour.rgb = mix(barColour, barColourShade, pow(UV.y, 1.8)).rgb;
+		pixelColour.rgb = barColour.rgb;
 		pixelColour.rgb = mix(pixelColour.rgb, vec3(1, UV.x * 1.2, pow(UV.x, 2)) + 0.2, flashing * pow(sin(TIME * 5.0), 2));
 	}
 	else if(value < 0.4){
@@ -61,21 +58,18 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssit0"]
 shader = SubResource("Shader_s7203")
 shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
-shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
 shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
 shader_parameter/flashing = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4560"]
 shader = SubResource("Shader_s7203")
 shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
-shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
 shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
 shader_parameter/flashing = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehpfc"]
 shader = SubResource("Shader_s7203")
 shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
-shader_parameter/barColourShade = Color(0.136719, 0.352539, 1, 1)
 shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
 shader_parameter/flashing = 0.0
 
@@ -144,4 +138,5 @@ offset_bottom = 71.0
 grow_horizontal = 2
 mouse_filter = 2
 theme = ExtResource("1_8f6cw")
+value = 50.0
 show_percentage = false
