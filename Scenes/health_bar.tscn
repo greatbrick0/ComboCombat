@@ -28,7 +28,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wurho"]
 shader = SubResource("Shader_cvbqc")
-shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColour = Color(0.503906, 0.779083, 1, 1)
 shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
 shader_parameter/flashing = 0.0
 
@@ -57,19 +57,19 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ssit0"]
 shader = SubResource("Shader_s7203")
-shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColour = Color(0.503906, 0.779083, 1, 1)
 shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
 shader_parameter/flashing = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4560"]
 shader = SubResource("Shader_s7203")
-shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColour = Color(0.503906, 0.779083, 1, 1)
 shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
 shader_parameter/flashing = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehpfc"]
 shader = SubResource("Shader_s7203")
-shader_parameter/barColour = Color(0.703125, 0.867798, 1, 1)
+shader_parameter/barColour = Color(0.503906, 0.779083, 1, 1)
 shader_parameter/rimColour = Color(0.507813, 0.507813, 0.507813, 1)
 shader_parameter/flashing = 0.0
 

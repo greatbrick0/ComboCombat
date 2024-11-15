@@ -16,15 +16,14 @@ func SetUpSegments(count: int) -> void:
 		if(count > 0):
 			get_child(ii).visible = true
 			var barSegs: int = min(count, 6)
-			print(barSegs)
 			for jj in barSegs - 1:
 				dividers.append(Vector2(((jj + 1.0) / barSegs) * barWidth - (barWidth/2), 22 + (13*ii)))
 				dividers.append(Vector2(((jj + 1.0) / barSegs) * barWidth - (barWidth/2), 33 + (13*ii)))
 			count -= barSegs
 
 func SetColour(newColour: Color) -> void:
-	pass
+	for ii in get_children():
+		ii.material.set_shader_parameter("barColour", newColour)
 
 func _draw():
-	#Color("969696") Color("ff0000")
 	draw_multiline(dividers, Color("818181"), 3)
