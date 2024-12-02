@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/weapon_selector.gd" id="1_75vkb"]
 [ext_resource type="PackedScene" uid="uid://cb6s7u207mo3l" path="res://Scenes/WeaponScenes/stab_weapon.tscn" id="2_kows8"]
-[ext_resource type="Texture2D" uid="uid://bmq67pi5y1hj0" path="res://Sprites/icon.svg" id="3_fcvcy"]
+[ext_resource type="Texture2D" uid="uid://c213jh0e8nraq" path="res://Sprites/Checkmark.png" id="3_rod7v"]
 
 [node name="WeaponSelector" type="Control"]
 custom_minimum_size = Vector2(200, 200)
@@ -33,8 +33,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SelectIndicator" type="Sprite2D" parent="Button"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_fcvcy")
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_rod7v")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

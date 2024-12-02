@@ -10,7 +10,7 @@ var moveDir: Vector2
 @export var maxHealth: int = 4
 @export var currentHealth: int = 4
 
-func _ready():
+func Initialize() -> void:
 	maxRecordedActions = max(
 		$LeftWeaponHolder.get_child(0).comboPattern.size(), 
 		$RightWeaponHolder.get_child(0).comboPattern.size(), 
@@ -31,6 +31,9 @@ func _process(delta):
 		$LeftWeaponHolder.get_child(0).AttemptAction(mousePos, 1)
 	if(Input.is_action_just_pressed("RightTool")):
 		$RightWeaponHolder.get_child(0).AttemptAction(mousePos, 2)
+	
+	if(currentHealth == 1): $DangerSound.play()
+	else: $DangerSound.stop()
 
 func MoveCommand(newTargetPos: Vector2, newMoveSpeed: float, maxDist: float) -> void:
 	movePos = VecUtilities.xy(global_position) + (newTargetPos - VecUtilities.xy(global_position)).limit_length(maxDist)

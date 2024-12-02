@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4maho7qabnep"]
+
+[ext_resource type="Script" path="res://Scripts/movement.gd" id="1_7inxe"]
+
+[node name="Movement" type="Node3D"]
+script = ExtResource("1_7inxe")
+maxDistance = 10.0

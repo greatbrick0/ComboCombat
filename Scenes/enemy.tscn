@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://da7sd2b7akk4q" path="res://Scenes/ui_tracker.tscn" id="1_v2bht"]
 [ext_resource type="Script" path="res://Scripts/health_bar.gd" id="3_qro36"]
 [ext_resource type="Theme" uid="uid://omi6nhgcn2v8" path="res://CombatUiTheme1.tres" id="4_vvd8i"]
-[ext_resource type="Script" path="res://Scripts/movement.gd" id="6_28chr"]
+[ext_resource type="PackedScene" uid="uid://d4maho7qabnep" path="res://Scenes/WeaponScenes/movement.tscn" id="6_jtqgb"]
 [ext_resource type="AudioStream" uid="uid://cpy35nqbohxqq" path="res://Sounds/EnemyHit.wav" id="6_v7pxn"]
 [ext_resource type="AudioStream" uid="uid://djc0g5e8auuc0" path="res://Sounds/EnemyDie.wav" id="8_pgm4a"]
 
@@ -173,8 +173,7 @@ shape = SubResource("CapsuleShape3D_hg2je")
 
 [node name="MovementHolder" type="Node3D" parent="."]
 
-[node name="Movement" type="Node3D" parent="MovementHolder"]
-script = ExtResource("6_28chr")
+[node name="Movement" parent="MovementHolder" instance=ExtResource("6_jtqgb")]
 maxDistance = 3.0
 travelSpeed = 1.2
 cooldownTime = 1.5

@@ -1,10 +1,7 @@
 extends Camera3D
 
 @export var offsetFromPlayer: Vector3
-
-func _ready():
-	offsetFromPlayer = global_position - %Player.global_position
+var playerRef: Node3D
 
 func _process(delta):
-	#global_position = lerp(global_position, %Player.global_position + offsetFromPlayer, 0.95 * delta)
-	global_position = %Player.global_position + offsetFromPlayer
+	global_position = playerRef.global_position + offsetFromPlayer

@@ -13,7 +13,8 @@ func SelectWeapon(column: int, wName: String, wDesc: String, wCombo: Array[int],
 	$Description/VBoxContainer/ComboPanel.visible = column != 1
 	$Description/VBoxContainer/DescriptionPanel/Label.text = wDesc
 	for ii in [2, 3, 4]:
+		for jj in 3:
+			$Selectors/HBoxContainer.get_child(jj).get_child(ii).CancelSoundEffect()
 		if($Selectors/HBoxContainer.get_child(column).get_child(ii).weaponName != wName):
 			$Selectors/HBoxContainer.get_child(column).get_child(ii).selected = false
-			$Selectors/HBoxContainer.get_child(column).get_child(ii).CancelSoundEffect()
 	PlayerSessionData.equipmentScenes[column] = wScene
