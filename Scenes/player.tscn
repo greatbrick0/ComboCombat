@@ -49,5 +49,8 @@ maxDistance = 10.0
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ynuii")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
+
 [connection signal="CreatedElement" from="HealthBarTracker" to="." method="_on_health_bar_tracker_created_element"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

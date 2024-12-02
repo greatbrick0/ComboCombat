@@ -15,7 +15,7 @@ func UpdateValue(newHealth: int) -> void:
 			get_child(ii).value = 100 * (newHealth - (ii*6)) / min(segments - (ii*6), 6)
 
 func SetUpSegments(count: int) -> void:
-	displayedSegments = count
+	segments = count
 	for ii in range(len(get_children())):
 		get_child(ii).size.x = barWidth
 		get_child(ii).size.y = 9

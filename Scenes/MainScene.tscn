@@ -8,6 +8,7 @@ viewport_path = NodePath("SubViewport")
 [node name="MainScene" type="Node"]
 
 [node name="SubViewport" type="SubViewport" parent="."]
+audio_listener_enable_3d = true
 size = Vector2i(320, 180)
 
 [node name="Level" parent="SubViewport" instance=ExtResource("1_4sp4s")]

@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="ComboCombat"
-run/main_scene="res://Scenes/MainScene.tscn"
+run/main_scene="res://Scenes/load_out_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
 VecUtilities="*res://Scripts/vec_utilities.gd"
+PlayerSessionData="*res://Scripts/player_session_data.gd"
 
 [display]
 

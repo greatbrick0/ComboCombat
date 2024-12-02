@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://t3vavwct3674"]
+[gd_scene load_steps=11 format=3 uid="uid://t3vavwct3674"]
 
 [ext_resource type="Script" path="res://Scripts/load_out_menu.gd" id="1_4pn0a"]
 [ext_resource type="Theme" uid="uid://2g7swjlcc67m" path="res://MenuUiTheme1.tres" id="1_6owqj"]
+[ext_resource type="Texture2D" uid="uid://bmq67pi5y1hj0" path="res://Sprites/icon.svg" id="3_5vwpr"]
+[ext_resource type="PackedScene" uid="uid://dimy56vgakgg8" path="res://Scenes/weapon_selector.tscn" id="4_wbox2"]
+[ext_resource type="AudioStream" uid="uid://yy8xhogu11kv" path="res://Sounds/Voice Lines/JumpVoiceLine.wav" id="5_lfcwr"]
+[ext_resource type="AudioStream" uid="uid://cr4i1e2kja40p" path="res://Sounds/Voice Lines/SpearVoiceLine.wav" id="5_pteb3"]
+[ext_resource type="AudioStream" uid="uid://cx27k37io8v4u" path="res://Sounds/Voice Lines/BashVoiceLine.wav" id="6_o82dw"]
+[ext_resource type="AudioStream" uid="uid://lqr1xduvmhna" path="res://Sounds/Voice Lines/BlinkVoiceLine.wav" id="6_xl1pb"]
+[ext_resource type="AudioStream" uid="uid://dpugtnjlmnbc1" path="res://Sounds/Voice Lines/ClawVoiceLine.wav" id="8_2qwp3"]
+[ext_resource type="AudioStream" uid="uid://pre15tbuxaro" path="res://Sounds/Voice Lines/HealVoiceLine.wav" id="8_xy5kg"]
 
 [node name="LoadOutMenu" type="ColorRect"]
 anchors_preset = 15
@@ -12,7 +20,7 @@ grow_vertical = 2
 color = Color(0.309219, 0.374671, 0.410156, 1)
 script = ExtResource("1_4pn0a")
 
-[node name="Control" type="Control" parent="."]
+[node name="Navigation" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -22,7 +30,7 @@ offset_left = -480.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Navigation"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.210938, 0.210938, 0.210938, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Navigation"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,21 +51,231 @@ grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="ReadyButton" type="Button" parent="Control/VBoxContainer"]
+[node name="ReadyButton" type="Button" parent="Navigation/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_6owqj")
 text = "Ready"
 
-[node name="SettingsButton" type="Button" parent="Control/VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="Navigation/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_6owqj")
 text = "Settings
 "
 
-[node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Navigation/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_6owqj")
 text = "Quit"
 
-[connection signal="pressed" from="Control/VBoxContainer/ReadyButton" to="." method="_on_ready_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="Description" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -960.0
+offset_right = -480.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Description"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="WeaponTitle" type="Label" parent="Description/VBoxContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+theme = ExtResource("1_6owqj")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 45
+text = "Title Of Weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DescriptionPanel" type="Panel" parent="Description/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme = ExtResource("1_6owqj")
+
+[node name="Label" type="Label" parent="Description/VBoxContainer/DescriptionPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6owqj")
+text = "This Is a description."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ComboLabel" type="Label" parent="Description/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("1_6owqj")
+theme_override_font_sizes/font_size = 26
+text = "Combo:"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="ComboPanel" type="Panel" parent="Description/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme = ExtResource("1_6owqj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Description/VBoxContainer/ComboPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Selectors" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 960.0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Selectors"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="Selectors/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Selectors/HBoxContainer/VBoxContainer1"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Selectors/HBoxContainer/VBoxContainer1"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Selectors/HBoxContainer/VBoxContainer1/Control"]
+position = Vector2(100, 100)
+texture = ExtResource("3_5vwpr")
+
+[node name="WeaponSelector" parent="Selectors/HBoxContainer/VBoxContainer1" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+selected = true
+audioClip = ExtResource("5_pteb3")
+
+[node name="WeaponSelector2" parent="Selectors/HBoxContainer/VBoxContainer1" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+weaponName = "Bash"
+audioClip = ExtResource("6_o82dw")
+
+[node name="WeaponSelector3" parent="Selectors/HBoxContainer/VBoxContainer1" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+weaponName = "Spear3"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Selectors/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Selectors/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Selectors/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Selectors/HBoxContainer/VBoxContainer2/Control"]
+position = Vector2(100, 100)
+texture = ExtResource("3_5vwpr")
+
+[node name="WeaponSelector" parent="Selectors/HBoxContainer/VBoxContainer2" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+slot = 1
+selected = true
+weaponName = "Jump"
+weaponDesc = "Well-rounded stats. 
+Combo: Quickly dash. "
+audioClip = ExtResource("5_lfcwr")
+
+[node name="WeaponSelector2" parent="Selectors/HBoxContainer/VBoxContainer2" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+slot = 1
+weaponName = "Blink"
+weaponDesc = "Very agile, very fragile. 
+Combo: Teleport. "
+audioClip = ExtResource("6_xl1pb")
+
+[node name="WeaponSelector3" parent="Selectors/HBoxContainer/VBoxContainer2" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+slot = 1
+weaponName = "Heal"
+weaponDesc = "Big and bulky. 
+Combo: Heal. "
+audioClip = ExtResource("8_xy5kg")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Selectors/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="Selectors/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Selectors/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Selectors/HBoxContainer/VBoxContainer3/Control"]
+position = Vector2(100, 100)
+texture = ExtResource("3_5vwpr")
+
+[node name="WeaponSelector" parent="Selectors/HBoxContainer/VBoxContainer3" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+slot = 2
+selected = true
+weaponName = "Claw"
+weaponDesc = "Swipes multiple times in a small area. 
+Combo: Triple attack."
+audioClip = ExtResource("8_2qwp3")
+
+[node name="WeaponSelector2" parent="Selectors/HBoxContainer/VBoxContainer3" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+slot = 2
+weaponName = "Spear2"
+
+[node name="WeaponSelector3" parent="Selectors/HBoxContainer/VBoxContainer3" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
+layout_mode = 2
+managerNode = NodePath("../../../..")
+slot = 2
+weaponName = "Spear3"
+
+[connection signal="pressed" from="Navigation/VBoxContainer/ReadyButton" to="." method="_on_ready_button_pressed"]
+[connection signal="pressed" from="Navigation/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

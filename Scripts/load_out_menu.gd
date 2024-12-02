@@ -5,3 +5,15 @@ func _on_ready_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+func SelectWeapon(column: int, wName: String, wDesc: String, wCombo: Array[int], wScene: PackedScene) -> void:
+	$Description.visible = true
+	$Description/VBoxContainer/WeaponTitle.text = wName
+	$Description/VBoxContainer/ComboLabel.visible = column != 1
+	$Description/VBoxContainer/ComboPanel.visible = column != 1
+	$Description/VBoxContainer/DescriptionPanel/Label.text = wDesc
+	for ii in [2, 3, 4]:
+		if($Selectors/HBoxContainer.get_child(column).get_child(ii).weaponName != wName):
+			$Selectors/HBoxContainer.get_child(column).get_child(ii).selected = false
+			$Selectors/HBoxContainer.get_child(column).get_child(ii).CancelSoundEffect()
+	PlayerSessionData.equipmentScenes[column] = wScene

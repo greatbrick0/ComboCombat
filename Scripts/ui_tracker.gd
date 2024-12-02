@@ -15,7 +15,7 @@ func _exit_tree():
 
 func CreateUi() -> void:
 	instance = trackerObj.instantiate()
-	get_tree().root.get_node("Node/FlatElements").add_child.call_deferred(instance)
+	get_tree().root.get_node("MainScene/FlatElements").add_child.call_deferred(instance)
 	instance.ready.connect(ElementIsReady)
 
 func DeleteUi() -> void:

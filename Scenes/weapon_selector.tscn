@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dimy56vgakgg8"]
+
+[ext_resource type="Script" path="res://Scripts/weapon_selector.gd" id="1_75vkb"]
+[ext_resource type="PackedScene" uid="uid://cb6s7u207mo3l" path="res://Scenes/WeaponScenes/stab_weapon.tscn" id="2_kows8"]
+[ext_resource type="Texture2D" uid="uid://bmq67pi5y1hj0" path="res://Sprites/icon.svg" id="3_fcvcy"]
+
+[node name="WeaponSelector" type="Control"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_75vkb")
+weapon = ExtResource("2_kows8")
+weaponDesc = "Stabs a thin area forward. 
+Combo: Larger spear."
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SelectIndicator" type="Sprite2D" parent="Button"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_fcvcy")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
