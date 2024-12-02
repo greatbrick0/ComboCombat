@@ -1,11 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1lgveh5bum"]
+[gd_scene load_steps=22 format=3 uid="uid://c1lgveh5bum"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_fgsrm"]
 [ext_resource type="Material" uid="uid://bxgim7emymssa" path="res://Materials/Color5.tres" id="1_qbf5s"]
 [ext_resource type="PackedScene" uid="uid://da7sd2b7akk4q" path="res://Scenes/ui_tracker.tscn" id="1_v2bht"]
 [ext_resource type="Script" path="res://Scripts/health_bar.gd" id="3_qro36"]
 [ext_resource type="Theme" uid="uid://omi6nhgcn2v8" path="res://CombatUiTheme1.tres" id="4_vvd8i"]
+[ext_resource type="Script" path="res://Scripts/movement.gd" id="6_28chr"]
 [ext_resource type="AudioStream" uid="uid://cpy35nqbohxqq" path="res://Sounds/EnemyHit.wav" id="6_v7pxn"]
+[ext_resource type="AudioStream" uid="uid://djc0g5e8auuc0" path="res://Sounds/EnemyDie.wav" id="8_pgm4a"]
 
 [sub_resource type="Shader" id="Shader_qj0hs"]
 code = "shader_type canvas_item;
@@ -140,9 +142,18 @@ _bundled = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hg2je"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_fgrx5"]
+radius = 0.15
+height = 0.3
+radial_segments = 8
+rings = 4
+
+[sub_resource type="Curve" id="Curve_cw3t2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.769663, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Enemy" type="Node3D"]
 script = ExtResource("1_fgsrm")
-currentHealth = 8
 
 [node name="HealthBarTracker" parent="." instance=ExtResource("1_v2bht")]
 trackerObj = SubResource("PackedScene_wgu5s")
@@ -160,10 +171,38 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("CapsuleShape3D_hg2je")
 
+[node name="MovementHolder" type="Node3D" parent="."]
+
+[node name="Movement" type="Node3D" parent="MovementHolder"]
+script = ExtResource("6_28chr")
+maxDistance = 3.0
+travelSpeed = 1.2
+cooldownTime = 1.5
+
 [node name="HurtSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_v7pxn")
 panning_strength = 10.0
 bus = &"WorldSounds"
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_pgm4a")
+panning_strength = 10.0
+bus = &"WorldSounds"
+
+[node name="DeathParticles" type="CPUParticles3D" parent="."]
+material_override = ExtResource("1_qbf5s")
+emitting = false
+amount = 32
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.5
+mesh = SubResource("SphereMesh_fgrx5")
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+scale_amount_curve = SubResource("Curve_cw3t2")
 
 [connection signal="CreatedElement" from="HealthBarTracker" to="." method="_on_health_bar_tracker_created_element"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

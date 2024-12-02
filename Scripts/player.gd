@@ -37,7 +37,7 @@ func MoveCommand(newTargetPos: Vector2, newMoveSpeed: float, maxDist: float) -> 
 	movePos = VecUtilities.RoundToGrid(movePos)
 	moveSpeed = newMoveSpeed
 
-func RecordAction(action) -> void:
+func RecordAction(action: int) -> void:
 	recordedActions.push_back(action)
 	if(recordedActions.size() > maxRecordedActions):
 		recordedActions.pop_front()
