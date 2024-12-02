@@ -20,6 +20,7 @@ ambient_light_source = 2
 [node name="Level" type="Node3D"]
 script = ExtResource("1_jj87b")
 playerScene = ExtResource("2_2gyv5")
+enemyTypes = Array[PackedScene]([ExtResource("5_mq5qh")])
 
 [node name="Floor" type="Node3D" parent="."]
 
@@ -334,6 +335,3 @@ directional_shadow_split_2 = 0.3
 directional_shadow_split_3 = 0.7
 directional_shadow_fade_start = 0.9
 directional_shadow_max_distance = 20.0
-
-[node name="Enemy" parent="." instance=ExtResource("5_mq5qh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.88281, 0, -0.476716)

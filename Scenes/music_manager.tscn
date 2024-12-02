@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmms4nj1mw5md"]
+[gd_scene load_steps=6 format=3 uid="uid://dmms4nj1mw5md"]
 
 [ext_resource type="Script" path="res://Scripts/music_manager.gd" id="1_h6rv6"]
 [ext_resource type="AudioStream" uid="uid://oe7ldhf441p1" path="res://Sounds/Silence.wav" id="2_80h76"]
+[ext_resource type="AudioStream" uid="uid://omny3kmun8hc" path="res://Sounds/Music/CombatMusic.wav" id="3_8sb6s"]
 [ext_resource type="AudioStream" uid="uid://bvi37638enokh" path="res://Sounds/blipSelect.wav" id="4_4w2ic"]
-[ext_resource type="AudioStream" uid="uid://cmycg4oliurdn" path="res://Sounds/PlayerHurt.wav" id="5_4ts8u"]
+[ext_resource type="AudioStream" uid="uid://brapbypg8j0nm" path="res://Sounds/Music/SlowerCombatMusic.mp3" id="4_8gxun"]
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_h6rv6")
@@ -11,12 +12,15 @@ script = ExtResource("1_h6rv6")
 [node name="Track0" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_80h76")
 autoplay = true
+bus = &"Music"
 
 [node name="Track1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_4ts8u")
+stream = ExtResource("3_8sb6s")
+bus = &"Music"
 
 [node name="Track2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_4ts8u")
+stream = ExtResource("4_8gxun")
+bus = &"Music"
 
 [node name="GeneralEffects" type="Node" parent="."]
 

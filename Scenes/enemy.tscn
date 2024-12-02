@@ -178,6 +178,8 @@ maxDistance = 3.0
 travelSpeed = 1.2
 cooldownTime = 1.5
 
+[node name="WeaponHolder" type="Node3D" parent="."]
+
 [node name="HurtSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_v7pxn")
 panning_strength = 10.0

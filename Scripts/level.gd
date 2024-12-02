@@ -3,6 +3,10 @@ extends Node3D
 @export var playerScene: PackedScene
 var playerInstance: Node3D
 
+@export var enemyTypes: Array[PackedScene]
+var enemyInstance: Enemy
+var enemyCount: int = 0
+
 func _ready():
 	playerInstance = playerScene.instantiate()
 	add_child(playerInstance)
@@ -12,3 +16,24 @@ func _ready():
 	playerInstance.Initialize()
 	$ControlledCamera.playerRef = playerInstance
 	$ControlledCamera.offsetFromPlayer = $ControlledCamera.global_position - playerInstance.global_position
+	
+	SpawnEnemy(Vector3.RIGHT * 5)
+	SpawnEnemy(Vector3.LEFT * 5)
+	SpawnEnemy(Vector3.FORWARD * 5)
+	MusicManager.ChangeTrack(1)
+
+func SpawnEnemy(spawnPos: Vector3, typeIndex: int = 0) -> void:
+	enemyInstance = enemyTypes[typeIndex].instantiate()
+	add_child(enemyInstance)
+	enemyInstance.global_position = spawnPos
+	enemyInstance.died.connect(EnemyDied)
+	enemyCount += 1
+
+func EnemyDied() -> void:
+	print("died")
+	enemyCount -= 1
+	if(enemyCount == 1):
+		MusicManager.ChangeTrack(2)
+	elif(enemyCount == 0):
+		MusicManager.ChangeTrack(0)
+		print("win")
