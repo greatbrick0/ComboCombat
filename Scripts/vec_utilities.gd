@@ -18,3 +18,9 @@ func ScreenPos(vec3: Vector3, cam: Camera3D) -> Vector2:
 
 func RoundToGrid(vec2: Vector2) -> Vector2:
 	return Vector2(round(vec2.x * 8) / 8, round(vec2.y * 8) / 8)
+
+func xy(vec3: Vector3) -> Vector2:
+	return Vector2(vec3.x, vec3.z)
+
+func xyz(vec2: Vector2) -> Vector3:
+	return Vector3(vec2.x, 0, vec2.y)

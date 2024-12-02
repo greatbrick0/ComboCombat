@@ -5,6 +5,7 @@ var trackPos: bool = true
 
 @export var trackerObj: PackedScene
 var instance: Node
+signal CreatedElement(element: Node)
 
 func _enter_tree():
 	CreateUi()
@@ -14,10 +15,14 @@ func _exit_tree():
 
 func CreateUi() -> void:
 	instance = trackerObj.instantiate()
-	get_tree().root.add_child.call_deferred(instance)
+	get_tree().root.get_node("Node/FlatElements").add_child.call_deferred(instance)
+	instance.ready.connect(ElementIsReady)
 
 func DeleteUi() -> void:
 	instance.queue_free()
+
+func ElementIsReady():
+	emit_signal("CreatedElement", instance)
 
 func _process(delta):
 	if(trackPos):

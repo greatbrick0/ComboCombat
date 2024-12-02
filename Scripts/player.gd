@@ -13,13 +13,13 @@ func _ready():
 		recordedActions.append(-1)
 
 func _process(delta):
-	moveDir = xy(global_position).direction_to(movePos)
-	global_position += xyz(moveDir * moveSpeed * delta)
-	if(xy(global_position).distance_squared_to(movePos) <= 0.0001):
-		global_position = xyz(movePos)
+	moveDir = VecUtilities.xy(global_position).direction_to(movePos)
+	global_position += VecUtilities.xyz(moveDir * moveSpeed * delta)
+	if(VecUtilities.xy(global_position).distance_squared_to(movePos) <= 0.0001):
+		global_position = VecUtilities.xyz(movePos)
 
 func MoveCommand(newTargetPos: Vector2, newMoveSpeed: float, maxDist: float) -> void:
-	movePos = xy(global_position) + (newTargetPos - xy(global_position)).limit_length(maxDist)
+	movePos = VecUtilities.xy(global_position) + (newTargetPos - VecUtilities.xy(global_position)).limit_length(maxDist)
 	movePos = VecUtilities.RoundToGrid(movePos)
 	moveSpeed = newMoveSpeed
 
@@ -47,8 +47,7 @@ func MatchPattern(pattern: Array, matchArray: Array = []) -> bool:
 			return false
 	return true
 
-func xy(vec3: Vector3) -> Vector2:
-	return Vector2(vec3.x, vec3.z)
-
-func xyz(vec2: Vector2) -> Vector3:
-	return Vector3(vec2.x, 0, vec2.y)
+func _on_health_bar_tracker_created_element(element: Node):
+	element.SetUpSegments(4)
+	element.UpdateValue(4)
+	element.queue_redraw()

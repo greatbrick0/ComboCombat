@@ -6,12 +6,19 @@ extends Node2D
 var dividers: PackedVector2Array = []
 
 func _ready():
-	SetUpSegments(segments)
-	queue_redraw()
+	pass
+
+func UpdateValue(newHealth: int) -> void:
+	displayedSegments = newHealth
+	for ii in range(len(get_children())):
+		if(segments - (ii*6) > 0):
+			get_child(ii).value = 100 * (newHealth - (ii*6)) / min(segments - (ii*6), 6)
 
 func SetUpSegments(count: int) -> void:
+	displayedSegments = count
 	for ii in range(len(get_children())):
 		get_child(ii).size.x = barWidth
+		get_child(ii).size.y = 9
 		get_child(ii).position.x = -barWidth/2
 		if(count > 0):
 			get_child(ii).visible = true

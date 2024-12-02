@@ -11,15 +11,23 @@
 [node name="Player" type="Node3D"]
 script = ExtResource("1_677ad")
 
+[node name="HealthBarTracker" type="Node3D" parent="."]
+script = ExtResource("4_4mxan")
+trackerObj = ExtResource("5_8ny3w")
+
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = ExtResource("1_kwdtd")
 mesh = SubResource("CapsuleMesh_l83w6")
 
-[node name="Movement" type="Node3D" parent="."]
+[node name="MovementHolder" type="Node3D" parent="."]
+
+[node name="Movement" type="Node3D" parent="MovementHolder"]
 script = ExtResource("3_73kb4")
 maxDistance = 10.0
 
-[node name="UiTracker" type="Node3D" parent="."]
-script = ExtResource("4_4mxan")
-trackerObj = ExtResource("5_8ny3w")
+[node name="LeftWeaponHolder" type="Node3D" parent="."]
+
+[node name="RightWeaponHolder" type="Node3D" parent="."]
+
+[connection signal="CreatedElement" from="HealthBarTracker" to="." method="_on_health_bar_tracker_created_element"]
