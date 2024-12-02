@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmms4nj1mw5md"]
+
+[ext_resource type="Script" path="res://Scripts/music_manager.gd" id="1_h6rv6"]
+[ext_resource type="AudioStream" uid="uid://oe7ldhf441p1" path="res://Sounds/Silence.wav" id="2_80h76"]
+[ext_resource type="AudioStream" uid="uid://bvi37638enokh" path="res://Sounds/blipSelect.wav" id="4_4w2ic"]
+[ext_resource type="AudioStream" uid="uid://cmycg4oliurdn" path="res://Sounds/PlayerHurt.wav" id="5_4ts8u"]
+
+[node name="MusicManager" type="Node"]
+script = ExtResource("1_h6rv6")
+
+[node name="Track0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_80h76")
+autoplay = true
+
+[node name="Track1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4ts8u")
+
+[node name="Track2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_4ts8u")
+
+[node name="GeneralEffects" type="Node" parent="."]
+
+[node name="MenuBlip" type="AudioStreamPlayer" parent="GeneralEffects"]
+stream = ExtResource("4_4w2ic")
+volume_db = -10.0
+
+[connection signal="finished" from="Track0" to="." method="OnTrackFinished" binds= [0]]
+[connection signal="finished" from="Track1" to="." method="OnTrackFinished" binds= [1]]
+[connection signal="finished" from="Track2" to="." method="OnTrackFinished" binds= [2]]

@@ -18,6 +18,7 @@ func _ready():
 		$AudioStreamPlayer.stream = audioClip
 
 func _on_button_pressed():
+	MusicManager.PlayGeneral(0)
 	managerNode.SelectWeapon(slot, weaponName, weaponDesc, combo, weapon)
 	if(!selected):
 		$AudioStreamPlayer.play()

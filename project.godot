@@ -19,6 +19,7 @@ config/icon="res://Sprites/icon.svg"
 
 VecUtilities="*res://Scripts/vec_utilities.gd"
 PlayerSessionData="*res://Scripts/player_session_data.gd"
+MusicManager="*res://Scenes/music_manager.tscn"
 
 [display]
 

@@ -273,7 +273,7 @@ managerNode = NodePath("../../../..")
 slot = 2
 selected = true
 weaponName = "Claw"
-weaponDesc = "Swipes multiple times in a small area. 
+weaponDesc = "Swipes quickly in a small area. 
 Combo: Triple attack."
 audioClip = ExtResource("8_2qwp3")
 
