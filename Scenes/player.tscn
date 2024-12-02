@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw4r3ip4tw2ip"]
+[gd_scene load_steps=8 format=3 uid="uid://cw4r3ip4tw2ip"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_677ad"]
 [ext_resource type="Material" uid="uid://dffhf65r1361u" path="res://Materials/Color1.tres" id="1_kwdtd"]
 [ext_resource type="Script" path="res://Scripts/movement.gd" id="3_73kb4"]
 [ext_resource type="Script" path="res://Scripts/ui_tracker.gd" id="4_4mxan"]
 [ext_resource type="PackedScene" uid="uid://cwgxjycmg3u78" path="res://Scenes/health_bar.tscn" id="5_8ny3w"]
+[ext_resource type="PackedScene" uid="uid://cb6s7u207mo3l" path="res://Scenes/WeaponScenes/stab_weapon.tscn" id="6_kqy6t"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_l83w6"]
 
@@ -28,6 +29,10 @@ maxDistance = 10.0
 
 [node name="LeftWeaponHolder" type="Node3D" parent="."]
 
+[node name="StabWeapon" parent="LeftWeaponHolder" instance=ExtResource("6_kqy6t")]
+
 [node name="RightWeaponHolder" type="Node3D" parent="."]
+
+[node name="StabWeapon" parent="RightWeaponHolder" instance=ExtResource("6_kqy6t")]
 
 [connection signal="CreatedElement" from="HealthBarTracker" to="." method="_on_health_bar_tracker_created_element"]

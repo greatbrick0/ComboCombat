@@ -8,7 +8,10 @@ var movePos: Vector2
 var moveDir: Vector2
 
 func _ready():
-	#maxRecordedActions = max($LeftWeapon.comboPattern.size(), $RightWeapon.comboPattern.size(), 1)
+	maxRecordedActions = max(
+		$LeftWeaponHolder.get_child(0).comboPattern.size(), 
+		$RightWeaponHolder.get_child(0).comboPattern.size(), 
+		1)
 	for ii in maxRecordedActions:
 		recordedActions.append(-1)
 
@@ -17,6 +20,14 @@ func _process(delta):
 	global_position += VecUtilities.xyz(moveDir * moveSpeed * delta)
 	if(VecUtilities.xy(global_position).distance_squared_to(movePos) <= 0.0001):
 		global_position = VecUtilities.xyz(movePos)
+	
+	var mousePos: Vector2 = VecUtilities.MouseWorldPos(get_viewport().get_camera_3d())
+	if(Input.is_action_just_pressed("MiddleTool")):
+		$MovementHolder.get_child(0).AttemptAction(mousePos, 0)
+	if(Input.is_action_just_pressed("LeftTool")):
+		$LeftWeaponHolder.get_child(0).AttemptAction(mousePos, 1)
+	if(Input.is_action_just_pressed("RightTool")):
+		$RightWeaponHolder.get_child(0).AttemptAction(mousePos, 2)
 
 func MoveCommand(newTargetPos: Vector2, newMoveSpeed: float, maxDist: float) -> void:
 	movePos = VecUtilities.xy(global_position) + (newTargetPos - VecUtilities.xy(global_position)).limit_length(maxDist)
