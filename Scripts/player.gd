@@ -7,6 +7,9 @@ var moveSpeed: float = 5.0
 var movePos: Vector2
 var moveDir: Vector2
 
+@export var maxHealth: int = 4
+@export var currentHealth: int = 4
+
 func _ready():
 	maxRecordedActions = max(
 		$LeftWeaponHolder.get_child(0).comboPattern.size(), 
@@ -59,6 +62,14 @@ func MatchPattern(pattern: Array, matchArray: Array = []) -> bool:
 	return true
 
 func _on_health_bar_tracker_created_element(element: Node):
-	element.SetUpSegments(4)
-	element.UpdateValue(4)
+	element.SetUpSegments(maxHealth)
+	element.UpdateValue(currentHealth)
 	element.queue_redraw()
+
+func _on_hitbox_area_entered(area):
+	currentHealth -= 1
+	if(currentHealth <= 0):
+		print("dead")
+	else:
+		$HealthBarTracker.instance.UpdateValue(currentHealth)
+		$HurtSound.play()

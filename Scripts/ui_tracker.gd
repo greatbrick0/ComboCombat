@@ -25,5 +25,5 @@ func ElementIsReady():
 	emit_signal("CreatedElement", instance)
 
 func _process(delta):
-	if(trackPos):
+	if(trackPos and instance):
 		instance.global_position = VecUtilities.ScreenPos(global_position, get_viewport().get_camera_3d())

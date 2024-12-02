@@ -3,7 +3,7 @@ extends Node
 @export var comboPattern: Array = [0, 0, 0]
 @export var cooldownTime: float = 1.0
 var timeSinceUse: float = 0.0
-var ownerBody: Node
+var ownerBody: Node3D
 
 func _ready():
 	ownerBody = get_parent().get_parent()
@@ -16,9 +16,15 @@ func _process(delta):
 
 func AttemptAction(pos: Vector2, recordData: int) -> void:
 	if(timeSinceUse < cooldownTime): return
+	ownerBody.look_at(VecUtilities.xyz(pos))
 	if(EvaluateSpecial()):
-		ownerBody.MoveCommand(pos, 2, 2)
+		$Special.play("activate")
 	else:
-		ownerBody.MoveCommand(pos, 2, 2)
+		$Basic.play("activate")
 	ownerBody.RecordAction(recordData)
 	timeSinceUse = 0.0
+
+func MoveRelative(direction: Vector2, speed: float, dist: float) -> void:
+	var moveGoal: Vector3 = ownerBody.transform.basis.z * direction.x + ownerBody.transform.basis.y * direction.y
+	moveGoal += ownerBody.position
+	ownerBody.MoveCommand(VecUtilities.xy(moveGoal), speed, dist)

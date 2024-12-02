@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cw4r3ip4tw2ip"]
+[gd_scene load_steps=10 format=3 uid="uid://cw4r3ip4tw2ip"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_677ad"]
 [ext_resource type="Material" uid="uid://dffhf65r1361u" path="res://Materials/Color1.tres" id="1_kwdtd"]
@@ -6,8 +6,11 @@
 [ext_resource type="Script" path="res://Scripts/ui_tracker.gd" id="4_4mxan"]
 [ext_resource type="PackedScene" uid="uid://cwgxjycmg3u78" path="res://Scenes/health_bar.tscn" id="5_8ny3w"]
 [ext_resource type="PackedScene" uid="uid://cb6s7u207mo3l" path="res://Scenes/WeaponScenes/stab_weapon.tscn" id="6_kqy6t"]
+[ext_resource type="AudioStream" uid="uid://cmycg4oliurdn" path="res://Sounds/PlayerHurt.wav" id="7_ynuii"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_l83w6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n5btr"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_677ad")
@@ -20,6 +23,14 @@ trackerObj = ExtResource("5_8ny3w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = ExtResource("1_kwdtd")
 mesh = SubResource("CapsuleMesh_l83w6")
+
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 64
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("CapsuleShape3D_n5btr")
 
 [node name="MovementHolder" type="Node3D" parent="."]
 
@@ -35,4 +46,8 @@ maxDistance = 10.0
 
 [node name="StabWeapon" parent="RightWeaponHolder" instance=ExtResource("6_kqy6t")]
 
+[node name="HurtSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ynuii")
+
 [connection signal="CreatedElement" from="HealthBarTracker" to="." method="_on_health_bar_tracker_created_element"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

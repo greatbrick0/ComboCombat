@@ -4,7 +4,7 @@ extends Node3D
 @export var travelSpeed: float = 2.0
 @export var cooldownTime: float = 1.0
 var timeSinceUse: float = 0.0
-var ownerBody: Node
+var ownerBody: Node3D
 
 func _ready():
 	ownerBody = get_parent().get_parent()

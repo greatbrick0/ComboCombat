@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://t3vavwct3674"]
+
+[ext_resource type="Script" path="res://Scripts/load_out_menu.gd" id="1_4pn0a"]
+[ext_resource type="Theme" uid="uid://2g7swjlcc67m" path="res://MenuUiTheme1.tres" id="1_6owqj"]
+
+[node name="LoadOutMenu" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.309219, 0.374671, 0.410156, 1)
+script = ExtResource("1_4pn0a")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.210938, 0.210938, 0.210938, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ReadyButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_6owqj")
+text = "Ready"
+
+[node name="SettingsButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_6owqj")
+text = "Settings
+"
+
+[node name="QuitButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_6owqj")
+text = "Quit"
+
+[connection signal="pressed" from="Control/VBoxContainer/ReadyButton" to="." method="_on_ready_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
