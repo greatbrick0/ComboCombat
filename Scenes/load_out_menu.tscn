@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://t3vavwct3674"]
+[gd_scene load_steps=14 format=3 uid="uid://t3vavwct3674"]
 
 [ext_resource type="Script" path="res://Scripts/load_out_menu.gd" id="1_4pn0a"]
 [ext_resource type="Theme" uid="uid://2g7swjlcc67m" path="res://MenuUiTheme1.tres" id="1_6owqj"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dpugtnjlmnbc1" path="res://Sounds/Voice Lines/ClawVoiceLine.wav" id="8_2qwp3"]
 [ext_resource type="PackedScene" uid="uid://d4maho7qabnep" path="res://Scenes/WeaponScenes/movement.tscn" id="8_qlqnw"]
 [ext_resource type="AudioStream" uid="uid://pre15tbuxaro" path="res://Sounds/Voice Lines/HealVoiceLine.wav" id="8_xy5kg"]
+[ext_resource type="PackedScene" uid="uid://dh5ksxpynieg4" path="res://Scenes/WeaponScenes/claw_weapon.tscn" id="12_1qb21"]
 
 [node name="LoadOutMenu" type="ColorRect"]
 anchors_preset = 15
@@ -272,9 +273,11 @@ layout_mode = 2
 managerNode = NodePath("../../../..")
 slot = 2
 selected = true
+weapon = ExtResource("12_1qb21")
 weaponName = "Claw"
 weaponDesc = "Swipes quickly in a small area. 
 Combo: Triple attack."
+combo = Array[int]([0, 2, 2, 2])
 audioClip = ExtResource("8_2qwp3")
 
 [node name="WeaponSelector2" parent="Selectors/HBoxContainer/VBoxContainer3" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]

@@ -1,6 +1,6 @@
 extends Node
 
-@export var comboPattern: Array = [0, 0, 0]
+@export var comboPattern: Array[int] = [0, 0, 0]
 @export var cooldownTime: float = 1.0
 var timeSinceUse: float = 0.0
 var ownerBody: Node3D
