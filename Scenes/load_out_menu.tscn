@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://t3vavwct3674"]
+[gd_scene load_steps=17 format=3 uid="uid://t3vavwct3674"]
 
 [ext_resource type="Script" path="res://Scripts/load_out_menu.gd" id="1_4pn0a"]
 [ext_resource type="Theme" uid="uid://2g7swjlcc67m" path="res://MenuUiTheme1.tres" id="1_6owqj"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cx27k37io8v4u" path="res://Sounds/Voice Lines/BashVoiceLine.wav" id="6_o82dw"]
 [ext_resource type="AudioStream" uid="uid://lqr1xduvmhna" path="res://Sounds/Voice Lines/BlinkVoiceLine.wav" id="6_xl1pb"]
 [ext_resource type="Texture2D" uid="uid://doa34x6rib8p" path="res://Sprites/MovementLargeIcon.png" id="7_5xmqu"]
+[ext_resource type="PackedScene" uid="uid://dcq6q2h2vgb8v" path="res://Scenes/WeaponScenes/bash_weapon.tscn" id="7_6dxud"]
 [ext_resource type="AudioStream" uid="uid://dpugtnjlmnbc1" path="res://Sounds/Voice Lines/ClawVoiceLine.wav" id="8_2qwp3"]
 [ext_resource type="PackedScene" uid="uid://d4maho7qabnep" path="res://Scenes/WeaponScenes/movement.tscn" id="8_qlqnw"]
 [ext_resource type="AudioStream" uid="uid://pre15tbuxaro" path="res://Sounds/Voice Lines/HealVoiceLine.wav" id="8_xy5kg"]
@@ -200,7 +201,11 @@ audioClip = ExtResource("5_pteb3")
 [node name="WeaponSelector2" parent="Selectors/HBoxContainer/VBoxContainer1" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
 layout_mode = 2
 managerNode = NodePath("../../../..")
+weapon = ExtResource("7_6dxud")
 weaponName = "Bash"
+weaponDesc = "Smash a wide area forward.
+Combo: Move forward while attacking, with extra damage. "
+combo = Array[int]([2, 2])
 audioClip = ExtResource("6_o82dw")
 
 [node name="WeaponSelector3" parent="Selectors/HBoxContainer/VBoxContainer1" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]
