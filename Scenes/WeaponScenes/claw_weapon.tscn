@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dh5ksxpynieg4"]
+[gd_scene load_steps=14 format=3 uid="uid://dh5ksxpynieg4"]
 
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_gjvpn"]
 [ext_resource type="Material" uid="uid://dbqtisxhfwb0s" path="res://Materials/Color4.tres" id="2_f7l0k"]
 [ext_resource type="AudioStream" uid="uid://bagcrbqvkel0j" path="res://Sounds/WeaponSounds/Claw1.wav" id="3_1ywc2"]
+[ext_resource type="Material" uid="uid://d5jn0j1xlfe4" path="res://Materials/Color6.tres" id="3_h74ac"]
 
 [sub_resource type="Animation" id="Animation_h7l02"]
 length = 0.001
@@ -384,7 +385,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Holder2/Node3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
 visible = false
-material_override = ExtResource("2_f7l0k")
+material_override = ExtResource("3_h74ac")
 mesh = SubResource("SphereMesh_2kvmj")
 skeleton = NodePath("../..")
 
@@ -405,7 +406,7 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 0, 1, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Holder3/Node3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
 visible = false
-material_override = ExtResource("2_f7l0k")
+material_override = ExtResource("3_h74ac")
 mesh = SubResource("SphereMesh_2kvmj")
 skeleton = NodePath("../..")
 
@@ -426,7 +427,7 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 0, 1, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Holder4/Node3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.5)
 visible = false
-material_override = ExtResource("2_f7l0k")
+material_override = ExtResource("3_h74ac")
 mesh = SubResource("SphereMesh_2kvmj")
 skeleton = NodePath("../..")
 

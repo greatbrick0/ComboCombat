@@ -13,14 +13,13 @@ func _ready():
 	playerInstance.get_node("MovementHolder").add_child(PlayerSessionData.equipmentScenes[1].instantiate())
 	playerInstance.get_node("LeftWeaponHolder").add_child(PlayerSessionData.equipmentScenes[0].instantiate())
 	playerInstance.get_node("RightWeaponHolder").add_child(PlayerSessionData.equipmentScenes[2].instantiate())
-	playerInstance.Initialize()
+	playerInstance.Initialize(get_tree().root.get_node("MainScene/PlayerHud"))
 	$ControlledCamera.playerRef = playerInstance
 	$ControlledCamera.offsetFromPlayer = $ControlledCamera.global_position - playerInstance.global_position
 	
 	SpawnEnemy(Vector3.RIGHT * 5)
 	SpawnEnemy(Vector3.LEFT * 5)
 	SpawnEnemy(Vector3.FORWARD * 5)
-	MusicManager.ChangeTrack(1)
 
 func SpawnEnemy(spawnPos: Vector3, typeIndex: int = 0) -> void:
 	enemyInstance = enemyTypes[typeIndex].instantiate()
@@ -32,8 +31,6 @@ func SpawnEnemy(spawnPos: Vector3, typeIndex: int = 0) -> void:
 func EnemyDied() -> void:
 	print("died")
 	enemyCount -= 1
-	if(enemyCount == 1):
-		MusicManager.ChangeTrack(2)
-	elif(enemyCount == 0):
+	if(enemyCount == 0):
 		MusicManager.ChangeTrack(0)
 		print("win")

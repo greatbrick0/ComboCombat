@@ -10,13 +10,16 @@ var moveDir: Vector2
 @export var maxHealth: int = 4
 @export var currentHealth: int = 4
 
-func Initialize() -> void:
+var hudRef: Node
+
+func Initialize(newHudRef: Node) -> void:
 	maxRecordedActions = max(
 		$LeftWeaponHolder.get_child(0).comboPattern.size(), 
 		$RightWeaponHolder.get_child(0).comboPattern.size(), 
 		1)
 	for ii in maxRecordedActions:
 		recordedActions.append(-1)
+	hudRef = newHudRef
 
 func _process(delta):
 	moveDir = VecUtilities.xy(global_position).direction_to(movePos)
@@ -31,6 +34,12 @@ func _process(delta):
 		$LeftWeaponHolder.get_child(0).AttemptAction(mousePos, 1)
 	if(Input.is_action_just_pressed("RightTool")):
 		$RightWeaponHolder.get_child(0).AttemptAction(mousePos, 2)
+	
+	for ii in ["Movement", "LeftWeapon", "RightWeapon"]:
+		var equipment: Node = get_node(ii+"Holder").get_child(0)
+		hudRef.get_node(ii+"/Sprite2D/ProgressBar").value = 1 - equipment.timeSinceUse / equipment.cooldownTime
+		if(equipment.EvaluateSpecial()): hudRef.get_node(ii+"/Sprite2D").self_modulate = Color.AQUA
+		else: hudRef.get_node(ii+"/Sprite2D").self_modulate = Color.WHITE
 	
 	if(currentHealth == 1): $DangerSound.play()
 	else: $DangerSound.stop()

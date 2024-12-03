@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cb6s7u207mo3l"]
+[gd_scene load_steps=17 format=3 uid="uid://cb6s7u207mo3l"]
 
 [ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_h61ct"]
 [ext_resource type="Material" uid="uid://dbqtisxhfwb0s" path="res://Materials/Color4.tres" id="2_7qiq0"]
+[ext_resource type="Material" uid="uid://d5jn0j1xlfe4" path="res://Materials/Color6.tres" id="3_o07nd"]
 [ext_resource type="AudioStream" uid="uid://bvxa021l2v0vx" path="res://Sounds/WeaponSounds/Spear1.wav" id="3_yxl66"]
 
 [sub_resource type="Animation" id="Animation_h7l02"]
@@ -273,6 +274,7 @@ stream_0/stream = ExtResource("3_yxl66")
 
 [node name="StabWeapon" type="Node3D"]
 script = ExtResource("1_h61ct")
+cooldownTime = 1.2
 
 [node name="Basic" type="AnimationPlayer" parent="."]
 libraries = {
@@ -308,7 +310,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Holder2"]
 transform = Transform3D(1, 0, 0, 0, -3.49691e-08, 1, 0, -0.8, -4.37114e-08, 0, 0, -1.5)
 visible = false
-material_override = ExtResource("2_7qiq0")
+material_override = ExtResource("3_o07nd")
 mesh = SubResource("CylinderMesh_ydjhj")
 
 [node name="Area3D" type="Area3D" parent="Holder2"]
