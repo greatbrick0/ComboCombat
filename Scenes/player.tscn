@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cw4r3ip4tw2ip"]
+[gd_scene load_steps=10 format=3 uid="uid://cw4r3ip4tw2ip"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_677ad"]
 [ext_resource type="Material" uid="uid://dffhf65r1361u" path="res://Materials/Color1.tres" id="1_kwdtd"]
+[ext_resource type="PackedScene" uid="uid://d71cavl0osc2" path="res://Scenes/combo_step_display.tscn" id="2_nsoge"]
 [ext_resource type="Script" path="res://Scripts/ui_tracker.gd" id="4_4mxan"]
 [ext_resource type="PackedScene" uid="uid://cwgxjycmg3u78" path="res://Scenes/health_bar.tscn" id="5_8ny3w"]
 [ext_resource type="AudioStream" uid="uid://cmycg4oliurdn" path="res://Sounds/PlayerHurt.wav" id="7_ynuii"]
@@ -13,6 +14,7 @@
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_677ad")
+comboStepDisplayRef = ExtResource("2_nsoge")
 
 [node name="HealthBarTracker" type="Node3D" parent="."]
 script = ExtResource("4_4mxan")

@@ -319,7 +319,7 @@ mesh = SubResource("PlaneMesh_wimm7")
 skeleton = NodePath("../..")
 
 [node name="ControlledCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 5, 5)
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 7, 7)
 projection = 1
 size = 12.0
 script = ExtResource("2_jwr11")

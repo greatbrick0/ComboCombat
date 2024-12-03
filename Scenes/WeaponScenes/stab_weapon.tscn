@@ -274,6 +274,7 @@ stream_0/stream = ExtResource("3_yxl66")
 
 [node name="StabWeapon" type="Node3D"]
 script = ExtResource("1_h61ct")
+comboPattern = Array[int]([1, 0, 2])
 cooldownTime = 1.2
 
 [node name="Basic" type="AnimationPlayer" parent="."]

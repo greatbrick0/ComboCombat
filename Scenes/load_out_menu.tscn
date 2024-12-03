@@ -193,6 +193,7 @@ flip_h = true
 layout_mode = 2
 managerNode = NodePath("../../../..")
 selected = true
+combo = Array[int]([1, 0, 2])
 audioClip = ExtResource("5_pteb3")
 
 [node name="WeaponSelector2" parent="Selectors/HBoxContainer/VBoxContainer1" node_paths=PackedStringArray("managerNode") instance=ExtResource("4_wbox2")]

@@ -11,6 +11,7 @@ var moveDir: Vector2
 @export var currentHealth: int = 4
 
 var hudRef: Node
+@export var comboStepDisplayRef: PackedScene
 
 func Initialize(newHudRef: Node) -> void:
 	maxRecordedActions = max(
@@ -20,6 +21,16 @@ func Initialize(newHudRef: Node) -> void:
 	for ii in maxRecordedActions:
 		recordedActions.append(-1)
 	hudRef = newHudRef
+	SetUpComboDisplay(hudRef.get_node("LeftWeapon/Panel/Centre"), $LeftWeaponHolder.get_child(0).comboPattern)
+	SetUpComboDisplay(hudRef.get_node("RightWeapon/Panel/Centre"), $RightWeaponHolder.get_child(0).comboPattern)
+
+func SetUpComboDisplay(parentNode: Control, pattern: Array[int]) -> void:
+	var comboStepDisplayInstance: Node2D
+	for ii in len(pattern):
+		comboStepDisplayInstance = comboStepDisplayRef.instantiate()
+		parentNode.add_child(comboStepDisplayInstance)
+		comboStepDisplayInstance.DisplayStep(pattern[ii])
+		comboStepDisplayInstance.position.x = -(60 * len(pattern) * 0.5) + (60 * ii + 30)
 
 func _process(delta):
 	moveDir = VecUtilities.xy(global_position).direction_to(movePos)
@@ -35,14 +46,22 @@ func _process(delta):
 	if(Input.is_action_just_pressed("RightTool")):
 		$RightWeaponHolder.get_child(0).AttemptAction(mousePos, 2)
 	
-	for ii in ["Movement", "LeftWeapon", "RightWeapon"]:
-		var equipment: Node = get_node(ii+"Holder").get_child(0)
-		hudRef.get_node(ii+"/Sprite2D/ProgressBar").value = 1 - equipment.timeSinceUse / equipment.cooldownTime
-		if(equipment.EvaluateSpecial()): hudRef.get_node(ii+"/Sprite2D").self_modulate = Color.AQUA
-		else: hudRef.get_node(ii+"/Sprite2D").self_modulate = Color.WHITE
+	HandleHud()
 	
 	if(currentHealth == 1): $DangerSound.play()
 	else: $DangerSound.stop()
+
+func HandleHud() -> void:
+	for ii in ["Movement", "LeftWeapon", "RightWeapon"]:
+		var equipment: Node = get_node(ii+"Holder").get_child(0)
+		hudRef.get_node(ii+"/Sprite2D/ProgressBar").value = 1 - equipment.timeSinceUse / equipment.cooldownTime
+		hudRef.get_node(ii+"/Sprite2D").self_modulate = Color.AQUA if(equipment.EvaluateSpecial()) else Color.WHITE
+	var matchAmount: int = FindMatchAmount($LeftWeaponHolder.get_child(0).comboPattern)
+	for ii in hudRef.get_node("LeftWeapon/Panel/Centre").get_child_count():
+		hudRef.get_node("LeftWeapon/Panel/Centre").get_child(ii).modulate = Color.AQUA if(ii < matchAmount) else Color.WHITE
+	matchAmount = FindMatchAmount($RightWeaponHolder.get_child(0).comboPattern)
+	for ii in hudRef.get_node("RightWeapon/Panel/Centre").get_child_count():
+		hudRef.get_node("RightWeapon/Panel/Centre").get_child(ii).modulate = Color.AQUA if(ii < matchAmount) else Color.WHITE
 
 func MoveCommand(newTargetPos: Vector2, newMoveSpeed: float, maxDist: float) -> void:
 	movePos = VecUtilities.xy(global_position) + (newTargetPos - VecUtilities.xy(global_position)).limit_length(maxDist)
