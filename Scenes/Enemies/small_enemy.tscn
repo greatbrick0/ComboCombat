@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cughachugoww1"]
+[gd_scene load_steps=7 format=3 uid="uid://cughachugoww1"]
 
 [ext_resource type="PackedScene" uid="uid://c1lgveh5bum" path="res://Scenes/Enemies/enemy.tscn" id="1_tlkkk"]
 [ext_resource type="PackedScene" uid="uid://cwab3d2o0rtrc" path="res://Scenes/WeaponScenes/punch_weapon.tscn" id="2_3g8t5"]
+[ext_resource type="Material" uid="uid://v1jwvhdnm6bg" path="res://Materials/Color7.tres" id="3_pc48c"]
 [ext_resource type="Script" path="res://Scripts/Enemies/SmallEnemyBrain.gd" id="3_shsjs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vpgli"]
@@ -29,9 +30,15 @@ cooldownTime = 3.0
 
 [node name="PunchWeapon" parent="WeaponHolder" index="0" instance=ExtResource("2_3g8t5")]
 
+[node name="MeshInstance3D" parent="WeaponHolder/PunchWeapon/Holder1" index="0"]
+material_override = ExtResource("3_pc48c")
+
 [node name="Area3D" parent="WeaponHolder/PunchWeapon/Holder1" index="1"]
 collision_layer = 4
 collision_mask = 64
+
+[node name="MeshInstance3D" parent="WeaponHolder/PunchWeapon/Holder2" index="0"]
+material_override = ExtResource("3_pc48c")
 
 [node name="Area3D" parent="WeaponHolder/PunchWeapon/Holder2" index="1"]
 collision_layer = 4

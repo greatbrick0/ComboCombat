@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://1grgl4a0m57l"]
+
+[ext_resource type="PackedScene" uid="uid://c1lgveh5bum" path="res://Scenes/Enemies/enemy.tscn" id="1_xmh1w"]
+[ext_resource type="PackedScene" uid="uid://cb6s7u207mo3l" path="res://Scenes/WeaponScenes/stab_weapon.tscn" id="2_6ewlj"]
+[ext_resource type="Material" uid="uid://bxgim7emymssa" path="res://Materials/Color5.tres" id="2_8e7fp"]
+[ext_resource type="Material" uid="uid://v1jwvhdnm6bg" path="res://Materials/Color7.tres" id="3_cl8uk"]
+[ext_resource type="Script" path="res://Scripts/Enemies/LanceEnemyBrain.gd" id="5_2clrx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bwr42"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_p8p6c"]
+top_radius = 0.0
+bottom_radius = 0.4
+height = 0.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_irani"]
+
+[node name="LanceEnemy" instance=ExtResource("1_xmh1w")]
+maxHealth = 6
+currentHealth = 6
+
+[node name="Mesh" parent="." index="1"]
+mesh = SubResource("CapsuleMesh_bwr42")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+material_override = ExtResource("2_8e7fp")
+mesh = SubResource("CylinderMesh_p8p6c")
+
+[node name="CollisionShape3D" parent="Hitbox" index="0"]
+shape = SubResource("CapsuleShape3D_irani")
+
+[node name="Movement" parent="MovementHolder" index="0"]
+maxDistance = 4.0
+travelSpeed = 1.5
+
+[node name="StabWeapon" parent="WeaponHolder" index="0" instance=ExtResource("2_6ewlj")]
+cooldownTime = 2.0
+
+[node name="MeshInstance3D" parent="WeaponHolder/StabWeapon/Holder1" index="0"]
+material_override = ExtResource("3_cl8uk")
+
+[node name="Area3D" parent="WeaponHolder/StabWeapon/Holder1" index="1"]
+collision_layer = 4
+collision_mask = 64
+
+[node name="MeshInstance3D" parent="WeaponHolder/StabWeapon/Holder2" index="0"]
+material_override = ExtResource("3_cl8uk")
+
+[node name="Area3D" parent="WeaponHolder/StabWeapon/Holder2" index="1"]
+collision_layer = 4
+collision_mask = 64
+
+[node name="Area3D2" parent="WeaponHolder/StabWeapon/Holder2" index="2"]
+collision_layer = 4
+collision_mask = 64
+
+[node name="Brain" type="Node" parent="." index="8"]
+script = ExtResource("5_2clrx")
+
+[connection signal="queueEmpty" from="." to="Brain" method="_on_lance_enemy_queue_empty"]
+
+[editable path="WeaponHolder/StabWeapon"]

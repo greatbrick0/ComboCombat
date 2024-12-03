@@ -20,6 +20,8 @@ func _ready():
 	movePos = VecUtilities.xy(global_position)
 
 func _process(delta):
+	if(!alive): return
+	
 	moveDir = VecUtilities.xy(global_position).direction_to(movePos)
 	global_position += VecUtilities.xyz(moveDir * moveSpeed * delta)
 	if(VecUtilities.xy(global_position).distance_squared_to(movePos) <= 0.0001):

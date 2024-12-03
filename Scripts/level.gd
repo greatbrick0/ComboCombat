@@ -19,7 +19,7 @@ func _ready():
 	
 	SpawnEnemy(Vector3.RIGHT * 5, 1)
 	SpawnEnemy(Vector3.LEFT * 5, 1)
-	SpawnEnemy(Vector3.FORWARD * 5)
+	SpawnEnemy(Vector3.FORWARD * 5, 2)
 
 func SpawnEnemy(spawnPos: Vector3, typeIndex: int = 0) -> void:
 	enemyInstance = enemyTypes[typeIndex].instantiate()
@@ -30,7 +30,6 @@ func SpawnEnemy(spawnPos: Vector3, typeIndex: int = 0) -> void:
 	enemyCount += 1
 
 func EnemyDied() -> void:
-	print("died")
 	enemyCount -= 1
 	if(enemyCount == 0):
 		MusicManager.ChangeTrack(0)
