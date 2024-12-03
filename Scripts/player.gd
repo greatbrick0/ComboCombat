@@ -3,7 +3,7 @@ extends Node3D
 var recordedActions: Array = []
 var maxRecordedActions: int = 5
 
-var moveSpeed: float = 5.0
+var moveSpeed: float = 0.0
 var movePos: Vector2
 var moveDir: Vector2
 

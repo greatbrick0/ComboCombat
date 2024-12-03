@@ -17,14 +17,15 @@ func _ready():
 	$ControlledCamera.playerRef = playerInstance
 	$ControlledCamera.offsetFromPlayer = $ControlledCamera.global_position - playerInstance.global_position
 	
-	SpawnEnemy(Vector3.RIGHT * 5)
-	SpawnEnemy(Vector3.LEFT * 5)
+	SpawnEnemy(Vector3.RIGHT * 5, 1)
+	SpawnEnemy(Vector3.LEFT * 5, 1)
 	SpawnEnemy(Vector3.FORWARD * 5)
 
 func SpawnEnemy(spawnPos: Vector3, typeIndex: int = 0) -> void:
 	enemyInstance = enemyTypes[typeIndex].instantiate()
 	add_child(enemyInstance)
 	enemyInstance.global_position = spawnPos
+	enemyInstance.playerRef = playerInstance
 	enemyInstance.died.connect(EnemyDied)
 	enemyCount += 1
 

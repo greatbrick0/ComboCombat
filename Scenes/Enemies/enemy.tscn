@@ -1,13 +1,13 @@
 [gd_scene load_steps=22 format=3 uid="uid://c1lgveh5bum"]
 
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_fgsrm"]
-[ext_resource type="Material" uid="uid://bxgim7emymssa" path="res://Materials/Color5.tres" id="1_qbf5s"]
-[ext_resource type="PackedScene" uid="uid://da7sd2b7akk4q" path="res://Scenes/ui_tracker.tscn" id="1_v2bht"]
-[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="3_qro36"]
-[ext_resource type="Theme" uid="uid://omi6nhgcn2v8" path="res://CombatUiTheme1.tres" id="4_vvd8i"]
-[ext_resource type="PackedScene" uid="uid://d4maho7qabnep" path="res://Scenes/WeaponScenes/movement.tscn" id="6_jtqgb"]
-[ext_resource type="AudioStream" uid="uid://cpy35nqbohxqq" path="res://Sounds/EnemyHit.wav" id="6_v7pxn"]
-[ext_resource type="AudioStream" uid="uid://djc0g5e8auuc0" path="res://Sounds/EnemyDie.wav" id="8_pgm4a"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_odp82"]
+[ext_resource type="PackedScene" uid="uid://da7sd2b7akk4q" path="res://Scenes/ui_tracker.tscn" id="2_bhfvc"]
+[ext_resource type="Script" path="res://Scripts/health_bar.gd" id="3_8jg0f"]
+[ext_resource type="Theme" uid="uid://omi6nhgcn2v8" path="res://CombatUiTheme1.tres" id="4_1unyf"]
+[ext_resource type="Material" uid="uid://bxgim7emymssa" path="res://Materials/Color5.tres" id="5_ox2an"]
+[ext_resource type="PackedScene" uid="uid://d4maho7qabnep" path="res://Scenes/WeaponScenes/movement.tscn" id="6_ppwlv"]
+[ext_resource type="AudioStream" uid="uid://cpy35nqbohxqq" path="res://Sounds/EnemyHit.wav" id="7_jb4fb"]
+[ext_resource type="AudioStream" uid="uid://djc0g5e8auuc0" path="res://Sounds/EnemyDie.wav" id="8_nutym"]
 
 [sub_resource type="Shader" id="Shader_qj0hs"]
 code = "shader_type canvas_item;
@@ -134,11 +134,11 @@ _bundled = {
 "node_count": 5,
 "node_paths": [],
 "nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 3, 3, -1, 17, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 15, 11, 16, 12, 17, 11, 18, 13, 19, 9, 20, 1, 0, 0, 0, 3, 21, -1, 17, 4, 1, 5, 2, 6, 14, 7, 4, 8, 5, 9, 6, 10, 6, 11, 7, 12, 15, 13, 9, 14, 16, 15, 11, 16, 12, 17, 11, 18, 13, 19, 17, 20, 1, 0, 0, 0, 3, 22, -1, 17, 4, 1, 5, 2, 6, 18, 7, 4, 8, 5, 9, 6, 10, 6, 11, 7, 12, 19, 13, 9, 14, 20, 15, 11, 16, 12, 17, 11, 18, 13, 19, 21, 20, 1, 0, 0, 0, 3, 23, -1, 17, 4, 1, 5, 2, 6, 22, 7, 4, 8, 5, 9, 6, 10, 6, 11, 7, 12, 23, 13, 9, 14, 24, 15, 11, 16, 12, 17, 11, 18, 13, 19, 17, 20, 1, 0),
-"variants": [ExtResource("3_qro36"), false, true, SubResource("ShaderMaterial_pinbb"), Vector2(0, 9), 5, 0.5, -75.0, 23.0, 75.0, 32.0, 2, 8, ExtResource("4_vvd8i"), SubResource("ShaderMaterial_ao2qc"), 36.0, 45.0, 50.0, SubResource("ShaderMaterial_y4560"), 49.0, 58.0, 25.0, SubResource("ShaderMaterial_xb4px"), 62.0, 71.0],
+"variants": [ExtResource("3_8jg0f"), false, true, SubResource("ShaderMaterial_pinbb"), Vector2(0, 9), 5, 0.5, -75.0, 23.0, 75.0, 32.0, 2, 8, ExtResource("4_1unyf"), SubResource("ShaderMaterial_ao2qc"), 36.0, 45.0, 50.0, SubResource("ShaderMaterial_y4560"), 49.0, 58.0, 25.0, SubResource("ShaderMaterial_xb4px"), 62.0, 71.0],
 "version": 3
 }
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_46wc5"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_moiud"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hg2je"]
 
@@ -153,15 +153,15 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.769663, 1), 0.0, 0.0, 0, 0, Ve
 point_count = 3
 
 [node name="Enemy" type="Node3D"]
-script = ExtResource("1_fgsrm")
+script = ExtResource("1_odp82")
 
-[node name="HealthBarTracker" parent="." instance=ExtResource("1_v2bht")]
+[node name="HealthBarTracker" parent="." instance=ExtResource("2_bhfvc")]
 trackerObj = SubResource("PackedScene_wgu5s")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-material_override = ExtResource("1_qbf5s")
-mesh = SubResource("CapsuleMesh_46wc5")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+material_override = ExtResource("5_ox2an")
+mesh = SubResource("CapsuleMesh_moiud")
 
 [node name="Hitbox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -173,7 +173,7 @@ shape = SubResource("CapsuleShape3D_hg2je")
 
 [node name="MovementHolder" type="Node3D" parent="."]
 
-[node name="Movement" parent="MovementHolder" instance=ExtResource("6_jtqgb")]
+[node name="Movement" parent="MovementHolder" instance=ExtResource("6_ppwlv")]
 maxDistance = 3.0
 travelSpeed = 1.2
 cooldownTime = 1.5
@@ -181,17 +181,17 @@ cooldownTime = 1.5
 [node name="WeaponHolder" type="Node3D" parent="."]
 
 [node name="HurtSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_v7pxn")
+stream = ExtResource("7_jb4fb")
 panning_strength = 10.0
 bus = &"WorldSounds"
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("8_pgm4a")
+stream = ExtResource("8_nutym")
 panning_strength = 10.0
 bus = &"WorldSounds"
 
 [node name="DeathParticles" type="CPUParticles3D" parent="."]
-material_override = ExtResource("1_qbf5s")
+material_override = ExtResource("5_ox2an")
 emitting = false
 amount = 32
 lifetime = 1.5

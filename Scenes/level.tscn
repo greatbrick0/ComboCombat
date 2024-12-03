@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://y5ukec25rhbs"]
+[gd_scene load_steps=11 format=3 uid="uid://y5ukec25rhbs"]
 
 [ext_resource type="Script" path="res://Scripts/level.gd" id="1_jj87b"]
 [ext_resource type="PackedScene" uid="uid://cw4r3ip4tw2ip" path="res://Scenes/player.tscn" id="2_2gyv5"]
 [ext_resource type="Material" uid="uid://dsm5x54ffbjut" path="res://Materials/Color3.tres" id="2_52d5q"]
 [ext_resource type="Material" uid="uid://72v7vo4ov7uf" path="res://Materials/Color2.tres" id="2_bsbxx"]
 [ext_resource type="Script" path="res://Scripts/controlled_camera.gd" id="2_jwr11"]
-[ext_resource type="PackedScene" uid="uid://c1lgveh5bum" path="res://Scenes/enemy.tscn" id="5_mq5qh"]
+[ext_resource type="PackedScene" uid="uid://cughachugoww1" path="res://Scenes/Enemies/small_enemy.tscn" id="4_tsysk"]
+[ext_resource type="PackedScene" uid="uid://c1lgveh5bum" path="res://Scenes/Enemies/enemy.tscn" id="5_mq5qh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wimm7"]
 
@@ -20,7 +21,7 @@ ambient_light_source = 2
 [node name="Level" type="Node3D"]
 script = ExtResource("1_jj87b")
 playerScene = ExtResource("2_2gyv5")
-enemyTypes = Array[PackedScene]([ExtResource("5_mq5qh")])
+enemyTypes = Array[PackedScene]([ExtResource("5_mq5qh"), ExtResource("4_tsysk")])
 
 [node name="Floor" type="Node3D" parent="."]
 

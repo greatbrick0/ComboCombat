@@ -1,7 +1,7 @@
 extends Node3D
 class_name Enemy
 
-var moveSpeed: float = 5.0
+var moveSpeed: float = 0.0
 var movePos: Vector2
 var moveDir: Vector2
 
@@ -9,6 +9,36 @@ var moveDir: Vector2
 @export var currentHealth: int = 2
 var alive: bool = true
 signal died
+
+var playerRef: Node3D
+var actionTarget: Vector2
+var queuedActions: Array[int] = []
+var timeToAction: Array[float] = []
+signal queueEmpty
+
+func _ready():
+	movePos = VecUtilities.xy(global_position)
+
+func _process(delta):
+	moveDir = VecUtilities.xy(global_position).direction_to(movePos)
+	global_position += VecUtilities.xyz(moveDir * moveSpeed * delta)
+	if(VecUtilities.xy(global_position).distance_squared_to(movePos) <= 0.0001):
+		global_position = VecUtilities.xyz(movePos)
+	
+	if(!queuedActions.is_empty()):
+		if(timeToAction[0] > 0.0):
+			timeToAction[0] -= 1.0 * delta
+		else:
+			if(queuedActions[0] == 0): $MovementHolder.get_child(0).AttemptAction(actionTarget, 0)
+			else: $WeaponHolder.get_child(queuedActions[0] - 1).AttemptAction(actionTarget, 0)
+			queuedActions.pop_front()
+			timeToAction.pop_front()
+			if(queuedActions.is_empty()): emit_signal("queueEmpty")
+
+func MoveCommand(newTargetPos: Vector2, newMoveSpeed: float, maxDist: float) -> void:
+	movePos = VecUtilities.xy(global_position) + (newTargetPos - VecUtilities.xy(global_position)).limit_length(maxDist)
+	movePos = VecUtilities.RoundToGrid(movePos)
+	moveSpeed = newMoveSpeed
 
 func RecordAction(action: int) -> void:
 	pass
