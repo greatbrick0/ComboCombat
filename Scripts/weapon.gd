@@ -28,3 +28,6 @@ func MoveRelative(direction: Vector2, speed: float, dist: float) -> void:
 	var moveGoal: Vector3 = ownerBody.transform.basis.z * direction.x + ownerBody.transform.basis.y * direction.y
 	moveGoal += ownerBody.position
 	ownerBody.MoveCommand(VecUtilities.xy(moveGoal), speed, dist)
+
+func RefundCooldown(refund: float) -> void:
+	timeSinceUse += refund

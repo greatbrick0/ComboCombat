@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://cb6s7u207mo3l"]
+[gd_scene load_steps=15 format=3 uid="uid://cwab3d2o0rtrc"]
 
-[ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_h61ct"]
-[ext_resource type="Material" uid="uid://dbqtisxhfwb0s" path="res://Materials/Color4.tres" id="2_7qiq0"]
-[ext_resource type="Material" uid="uid://d5jn0j1xlfe4" path="res://Materials/Color6.tres" id="3_o07nd"]
-[ext_resource type="AudioStream" uid="uid://bvxa021l2v0vx" path="res://Sounds/WeaponSounds/Spear1.wav" id="3_yxl66"]
+[ext_resource type="Script" path="res://Scripts/weapon.gd" id="1_evn3n"]
+[ext_resource type="Material" uid="uid://dbqtisxhfwb0s" path="res://Materials/Color4.tres" id="2_ve8ug"]
+[ext_resource type="Material" uid="uid://d5jn0j1xlfe4" path="res://Materials/Color6.tres" id="3_6vasy"]
+[ext_resource type="AudioStream" uid="uid://by1x1afyaexfb" path="res://Sounds/WeaponSounds/Strike1.wav" id="4_xnddx"]
 
 [sub_resource type="Animation" id="Animation_h7l02"]
 length = 0.001
@@ -58,7 +58,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_uglgv"]
 resource_name = "activate"
-length = 0.8
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -67,8 +67,8 @@ tracks/0/path = NodePath("Holder1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(2, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(3, 1),
 "update": 0,
 "values": [Vector3(0, 1, 0), Vector3(0, 1, -1.5)]
 }
@@ -79,7 +79,7 @@ tracks/1/path = NodePath("Holder1/MeshInstance3D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -91,7 +91,7 @@ tracks/2/path = NodePath("Holder1/Area3D/CollisionShape3D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -115,12 +115,12 @@ _data = {
 "activate": SubResource("Animation_uglgv")
 }
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_bnq4b"]
-top_radius = 0.0
-bottom_radius = 0.1
+[sub_resource type="SphereMesh" id="SphereMesh_bni0b"]
+radius = 0.3
+height = 0.6
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_flqe4"]
-size = Vector3(0.1, 1, 2)
+[sub_resource type="SphereShape3D" id="SphereShape3D_4xvbj"]
+radius = 0.3
 
 [sub_resource type="Animation" id="Animation_pch7v"]
 length = 0.001
@@ -172,22 +172,10 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Holder2/Area3D2/CollisionShape3D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_fueut"]
 resource_name = "activate"
-length = 0.9
+length = 0.5
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -196,10 +184,10 @@ tracks/0/path = NodePath("Holder2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(2, 1),
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(3, 1),
 "update": 0,
-"values": [Vector3(0, 1, 0), Vector3(0, 1, -2)]
+"values": [Vector3(0, 1, 0), Vector3(0, 1, -2.5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -208,7 +196,7 @@ tracks/1/path = NodePath("Holder2/MeshInstance3D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -220,7 +208,7 @@ tracks/2/path = NodePath("Holder2/Area3D/CollisionShape3D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.9),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -237,17 +225,19 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/4/type = "value"
+tracks/4/type = "method"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Holder2/Area3D2/CollisionShape3D:disabled")
+tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.4],
+"method": &"RefundCooldown"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ml02d"]
@@ -256,26 +246,19 @@ _data = {
 "activate": SubResource("Animation_fueut")
 }
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ydjhj"]
-top_radius = 0.0
-bottom_radius = 0.2
-height = 3.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pk8d4"]
-size = Vector3(0.4, 1, 3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mis0s"]
-size = Vector3(0.4, 1, 2.5)
+[sub_resource type="SphereMesh" id="SphereMesh_vk3yq"]
+radius = 0.3
+height = 0.6
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xs045"]
-random_pitch = 1.2
+random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("3_yxl66")
+stream_0/stream = ExtResource("4_xnddx")
 
-[node name="StabWeapon" type="Node3D"]
-script = ExtResource("1_h61ct")
-comboPattern = Array[int]([1, 0, 2])
-cooldownTime = 1.2
+[node name="PunchWeapon" type="Node3D"]
+script = ExtResource("1_evn3n")
+comboPattern = Array[int]([0])
+cooldownTime = 0.9
 
 [node name="Basic" type="AnimationPlayer" parent="."]
 libraries = {
@@ -286,18 +269,18 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Holder1"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.3)
 visible = false
-material_override = ExtResource("2_7qiq0")
-mesh = SubResource("CylinderMesh_bnq4b")
+material_override = ExtResource("2_ve8ug")
+mesh = SubResource("SphereMesh_bni0b")
 
 [node name="Area3D" type="Area3D" parent="Holder1"]
 collision_layer = 8
 collision_mask = 128
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Holder1/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
-shape = SubResource("BoxShape3D_flqe4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
+shape = SubResource("SphereShape3D_4xvbj")
 disabled = true
 
 [node name="Special" type="AnimationPlayer" parent="."]
@@ -309,32 +292,23 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Holder2"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -1.5)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.3)
 visible = false
-material_override = ExtResource("3_o07nd")
-mesh = SubResource("CylinderMesh_ydjhj")
+material_override = ExtResource("3_6vasy")
+mesh = SubResource("SphereMesh_vk3yq")
 
 [node name="Area3D" type="Area3D" parent="Holder2"]
 collision_layer = 8
 collision_mask = 128
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Holder2/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
-shape = SubResource("BoxShape3D_pk8d4")
-disabled = true
-
-[node name="Area3D2" type="Area3D" parent="Holder2"]
-collision_layer = 8
-collision_mask = 128
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Holder2/Area3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25)
-shape = SubResource("BoxShape3D_mis0s")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
+shape = SubResource("SphereShape3D_4xvbj")
 disabled = true
 
 [node name="BasicSound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_xs045")
 
 [node name="SpecialSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_yxl66")
-pitch_scale = 0.6
+stream = SubResource("AudioStreamRandomizer_xs045")
+pitch_scale = 1.4

@@ -13,6 +13,9 @@ signal died
 func RecordAction(action: int) -> void:
 	pass
 
+func MatchPattern(pattern: Array, matchArray: Array = []) -> bool:
+	return false
+
 func _on_health_bar_tracker_created_element(element: Node):
 	element.barWidth = 120
 	element.SetColour(Color.CRIMSON)
