@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://t3vavwct3674"]
+[gd_scene load_steps=15 format=3 uid="uid://t3vavwct3674"]
 
 [ext_resource type="Script" path="res://Scripts/load_out_menu.gd" id="1_4pn0a"]
 [ext_resource type="Theme" uid="uid://2g7swjlcc67m" path="res://MenuUiTheme1.tres" id="1_6owqj"]
+[ext_resource type="PackedScene" uid="uid://d71cavl0osc2" path="res://Scenes/combo_step_display.tscn" id="2_c8wxp"]
 [ext_resource type="Texture2D" uid="uid://bkjvmquc13vn8" path="res://Sprites/WeaponLargeIcon.png" id="3_4yf7x"]
 [ext_resource type="PackedScene" uid="uid://dimy56vgakgg8" path="res://Scenes/weapon_selector.tscn" id="4_wbox2"]
 [ext_resource type="AudioStream" uid="uid://yy8xhogu11kv" path="res://Sounds/Voice Lines/JumpVoiceLine.wav" id="5_lfcwr"]
@@ -22,6 +23,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.309219, 0.374671, 0.410156, 1)
 script = ExtResource("1_4pn0a")
+comboStepDisplayColour = Color(0.15477, 0.164632, 0.269531, 1)
+comboStepDisplayRef = ExtResource("2_c8wxp")
 
 [node name="Navigation" type="Control" parent="."]
 layout_mode = 1
@@ -140,11 +143,13 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme = ExtResource("1_6owqj")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Description/VBoxContainer/ComboPanel"]
+[node name="Centre" type="Control" parent="Description/VBoxContainer/ComboPanel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 

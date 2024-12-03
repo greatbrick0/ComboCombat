@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d71cavl0osc2"]
+
+[ext_resource type="Script" path="res://Scripts/combo_step_display.gd" id="1_drbvw"]
+[ext_resource type="Texture2D" uid="uid://svjrs2xhmxgf" path="res://Sprites/MovementSmallIcon.png" id="2_12eov"]
+[ext_resource type="Texture2D" uid="uid://bvtx8w3yrnuq" path="res://Sprites/WeaponSmallIcon.png" id="3_ag1ik"]
+
+[node name="ComboStepDisplay" type="Node2D"]
+script = ExtResource("1_drbvw")
+
+[node name="Sprite0" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_12eov")
+
+[node name="Sprite1" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_ag1ik")
+flip_h = true
+
+[node name="Sprite2" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_ag1ik")

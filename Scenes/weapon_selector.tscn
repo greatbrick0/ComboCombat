@@ -33,6 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SelectIndicator" type="Sprite2D" parent="Button"]
+visible = false
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_rod7v")
 
